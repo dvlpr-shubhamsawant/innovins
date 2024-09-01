@@ -7,6 +7,7 @@ import 'package:innovins_tech/const/app_colors.dart';
 import 'package:innovins_tech/const/enum.dart';
 import 'package:innovins_tech/const/spacing.dart';
 import 'package:innovins_tech/controller/auth_controller.dart';
+import 'package:innovins_tech/views/home.dart';
 import 'package:innovins_tech/views/home_screen/home_screen.dart';
 import 'package:innovins_tech/views/shared_widget/custom_textfield.dart';
 import 'package:innovins_tech/views/shared_widget/toast.dart';
@@ -61,7 +62,7 @@ class SignUpScreen extends StatelessWidget {
                       await controller.registerUser(userData).then((value) {
                         log(value.toString());
                         if (value == Status.success) {
-                          context.goNamed(HomeScreen.id);
+                          context.goNamed(Home.id);
                         } else {
                           flutterToast(context, "Something went wrong");
                         }

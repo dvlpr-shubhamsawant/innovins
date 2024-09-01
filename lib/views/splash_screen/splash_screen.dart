@@ -1,9 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:innovins_tech/const/enum.dart';
 import 'package:innovins_tech/const/name_const.dart';
 import 'package:innovins_tech/services/hive_service.dart';
-import 'package:innovins_tech/views/home_screen/home_screen.dart';
+import 'package:innovins_tech/views/home.dart';
 import 'package:innovins_tech/views/sign_in_screen/sign_in_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -13,10 +14,11 @@ class SplashScreen extends StatelessWidget {
   changeScreen(context) async {
     Future.delayed(Duration.zero, () async {
       var token = await HiveService().getData(NameConst.key);
-      if (token != null) {
-        GoRouter.of(context).goNamed(HomeScreen.id);
-      } else {
+      log(token);
+      if (token.isEmpty) {
         GoRouter.of(context).goNamed(SignInScreen.id);
+      } else {
+        GoRouter.of(context).goNamed(Home.id);
       }
     });
   }

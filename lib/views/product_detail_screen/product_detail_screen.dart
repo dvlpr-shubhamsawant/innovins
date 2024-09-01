@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:innovins_tech/const/app_colors.dart';
 import 'package:innovins_tech/const/assets.dart';
 import 'package:innovins_tech/const/spacing.dart';
+import 'package:innovins_tech/views/home.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key});
@@ -48,7 +50,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ],
                 ),
                 Positioned(
-                  top: fixheight * 0.25,
+                  top: fixheight * 0.26,
                   left: fixwidth * 0.4,
                   child: SizedBox(
                     width: fixwidth * 0.2,
@@ -64,7 +66,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       }),
                     ),
                   ),
-                )
+                ),
+                Positioned(
+                  left: 20.w,
+                  top: 40.h,
+                  child: GestureDetector(
+                    onTap: () {
+                      context.goNamed(Home.id);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -76,14 +90,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30))),
             margin:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.28),
-            height: MediaQuery.of(context).size.height * 0.7,
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
+            height: MediaQuery.of(context).size.height * 0.8,
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: fixheight * 0.01,
+                  height: fixheight * 0.03,
                 ),
                 Text(
                   "Boston Letuce",
@@ -91,7 +105,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: fixheight * 0.018,
+                  height: fixheight * 0.02,
                 ),
                 RichText(
                   text: TextSpan(
@@ -110,7 +124,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: fixheight * 0.015,
+                  height: fixheight * 0.018,
                 ),
                 RichText(
                   text: TextSpan(
@@ -143,7 +157,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   style: TextStyle(fontSize: 15.sp, color: AppColors.greyColor),
                 ),
                 SizedBox(
-                  height: fixheight * 0.058,
+                  height: fixheight * 0.12,
                 ),
                 Row(
                   children: [

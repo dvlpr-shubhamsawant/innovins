@@ -19,19 +19,19 @@ class HiveService {
     }
   }
 
-  Future<Status> getData(String key) async {
+  Future<String> getData(String key) async {
     try {
       var box = await Hive.openBox(NameConst.authDB);
       var data = await box.get(key);
       box.close();
 
       if (data == null) {
-        return Status.failure;
+        return "";
       }
-      return Status.success;
+      return data;
     } catch (e) {
       log(e.toString(), name: "Get Data failed");
-      return Status.failure;
+      return "";
     }
   }
 
