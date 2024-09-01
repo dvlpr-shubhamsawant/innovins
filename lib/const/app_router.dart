@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:innovins_tech/const/app_colors.dart';
 import 'package:innovins_tech/main.dart';
+import 'package:innovins_tech/models/data_wrapper.dart';
+import 'package:innovins_tech/models/product_data_model.dart';
 import 'package:innovins_tech/views/home.dart';
 
 import 'package:innovins_tech/views/home_screen/home_screen.dart';
@@ -45,14 +47,16 @@ class AppRouter {
               path: 'homescreen',
               name: HomeScreen.id,
               builder: (context, state) => HomeScreen(),
-              routes: [
-                GoRoute(
-                  path: 'productdetailscreen',
-                  name: ProductDetailScreen.id,
-                  builder: (context, state) => ProductDetailScreen(),
-                )
-              ],
             ),
+            GoRoute(
+                path: 'productdetailscreen',
+                name: ProductDetailScreen.id,
+                builder: (context, state) {
+                  DataWrapper data = state.extra as DataWrapper;
+                  return ProductDetailScreen(
+                    data: data,
+                  );
+                }),
             GoRoute(
               path: 'profilescreen',
               name: ProfileScreen.id,

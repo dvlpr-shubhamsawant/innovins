@@ -4,11 +4,15 @@ import 'package:go_router/go_router.dart';
 import 'package:innovins_tech/const/app_colors.dart';
 import 'package:innovins_tech/const/assets.dart';
 import 'package:innovins_tech/const/spacing.dart';
+import 'package:innovins_tech/models/data_wrapper.dart';
+import 'package:innovins_tech/models/product_data_model.dart';
 import 'package:innovins_tech/views/home.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({super.key});
+  ProductDetailScreen({super.key, required this.data});
   static String id = "ProductDetailScreen";
+
+  DataWrapper data;
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -37,15 +41,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   children: [
                     Image(
                       fit: BoxFit.cover,
-                      image: AssetImage(Assets.image1),
+                      image: AssetImage(widget.data.image),
                     ),
                     Image(
                       fit: BoxFit.cover,
-                      image: AssetImage(Assets.image1),
+                      image: AssetImage(widget.data.image),
                     ),
                     Image(
                       fit: BoxFit.cover,
-                      image: AssetImage(Assets.image1),
+                      image: AssetImage(widget.data.image),
                     ),
                   ],
                 ),
@@ -100,7 +104,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   height: fixheight * 0.03,
                 ),
                 Text(
-                  "Boston Letuce",
+                  "${widget.data.productDataModel.name}",
                   style:
                       TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
                 ),
@@ -109,7 +113,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
                 RichText(
                   text: TextSpan(
-                    text: "1234",
+                    text: "${widget.data.productDataModel.discountedPrice}",
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
@@ -128,7 +132,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
                 RichText(
                   text: TextSpan(
-                    text: "~ ${159}",
+                    text: "~ ${widget.data.productDataModel.moq}",
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

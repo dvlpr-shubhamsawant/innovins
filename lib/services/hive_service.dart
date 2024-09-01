@@ -28,6 +28,7 @@ class HiveService {
       if (data == null) {
         return "";
       }
+      log(data);
       return data;
     } catch (e) {
       log(e.toString(), name: "Get Data failed");
@@ -39,6 +40,7 @@ class HiveService {
     try {
       var box = await Hive.openBox(NameConst.authDB);
       await box.delete(key); // Remove the token from the box
+      getData(key);
       box.close();
     } catch (e) {
       log(e.toString(), name: "Delete failed");
