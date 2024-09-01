@@ -3,8 +3,10 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:innovins_tech/const/name_const.dart';
+import 'package:innovins_tech/main.dart';
 import 'package:innovins_tech/models/auth_user_model.dart';
 import 'package:innovins_tech/services/hive_service.dart';
+import 'package:innovins_tech/views/shared_widget/toast.dart';
 
 class AuthRequests {
   AuthRequests.internal();
@@ -46,6 +48,7 @@ class AuthRequests {
       }
     } catch (e) {
       log(e.toString(), name: "ERROR WITH LOGIN USER");
+      flutterToast(navigatorKey.currentState!.context, e.toString());
     }
     return null;
   }

@@ -61,7 +61,7 @@ class SignUpScreen extends StatelessWidget {
                       };
                       await controller.registerUser(userData).then((value) {
                         log(value.toString());
-                        if (value == Status.success) {
+                        if (value == true) {
                           context.goNamed(Home.id);
                         } else {
                           flutterToast(context, "Something went wrong");

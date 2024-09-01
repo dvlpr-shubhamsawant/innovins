@@ -17,27 +17,27 @@ class AuthController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Status> registerUser(Map<String, dynamic> userData) async {
+  Future registerUser(Map<String, dynamic> userData) async {
     updateAuthLoading = true;
     newUser = await AuthRequests().userRegisterRequest(userData);
     if (newUser?.data?.userToken == null) {
       updateAuthLoading = false;
-      return Status.failure;
+      return false;
     } else {
       updateAuthLoading = false;
-      return Status.success;
+      return true;
     }
   }
 
-  Future<Status> signinUser(Map<String, dynamic> userData) async {
+  Future signinUser(Map<String, dynamic> userData) async {
     updateAuthLoading = true;
     user = await AuthRequests().userLoginRequest(userData);
     if (user?.data?.userToken == null) {
       updateAuthLoading = false;
-      return Status.failure;
+      return false;
     } else {
       updateAuthLoading = false;
-      return Status.success;
+      return true;
     }
   }
 

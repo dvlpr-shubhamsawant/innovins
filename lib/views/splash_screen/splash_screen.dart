@@ -14,17 +14,19 @@ class SplashScreen extends StatelessWidget {
   static String id = "SplashScreen";
 
   changeScreen(context) async {
-    Future.delayed(Duration.zero, () async {
-      var token = await HiveService().getData(NameConst.key);
-      log(token);
-      if (token.isEmpty) {
-        GoRouter.of(context).goNamed(SignInScreen.id);
-      } else {
-        await Provider.of<HomeController>(context, listen: false)
-            .fetchAllProducts(token);
-        GoRouter.of(context).goNamed(Home.id);
-      }
-    });
+    Future.delayed(
+      Duration.zero,
+      () async {
+        var token = await HiveService().getData(NameConst.key);
+        if (token.isEmpty) {
+          GoRouter.of(context).goNamed(SignInScreen.id);
+        } else {
+          await Provider.of<HomeController>(context, listen: false)
+              .fetchAllProducts(token);
+          GoRouter.of(context).goNamed(Home.id);
+        }
+      },
+    );
   }
 
   @override
